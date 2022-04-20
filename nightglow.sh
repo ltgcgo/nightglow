@@ -18,7 +18,7 @@ function showHelp {
 			echo "Disconnects from Cloudflare WARP if using WireGuard TUN."
 			echo "Usage: nightglow delTun [configName]"
 			echo "Configuration name defaults to \"nightglow\"."
-		"use"
+			;;
 		*)
 			echo " help     Display help. Several subcommands have further help available."
 			echo " init     Initialize a Nightglow installation."
