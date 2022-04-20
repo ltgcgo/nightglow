@@ -87,7 +87,9 @@ function delTun {
 }
 function useSocks {
 	echo "Connecting to WARP via SOCKS5..."
-	su nightglow -c "cat nightglow.conf > socks5.conf"
+	cat nightglow.conf > socks5.conf
+	chown nightglow socks5.conf
+	chgrp nightglow socks5.conf
 	echo " " >> socks5.conf
 	echo "[Socks5]" >> socks5.conf
 	echo "BindAddress = 127.0.0.1:${1:-20040}" >> socks5.conf
