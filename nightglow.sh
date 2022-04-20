@@ -1,4 +1,4 @@
-#/bin/bash
+#!/bin/bash
 cd $PREFIX/opt/nightglow/
 
 function showHelp {
