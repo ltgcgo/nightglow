@@ -26,8 +26,10 @@ function showHelp {
 			echo "  init     Initialize a Nightglow installation."
 			echo "  register Registers a new Cloudflare WARP account."
 			echo "  update   Prepare Cloudflare WARP configurations for connection."
-			echo "  useSocks Connects to Cloudflare WARP in SOCKS5 mode."
-			echo "  delSocks Disconnects from Cloudflare WARP when in SOCKS5 mode."
+			echo "  useSocks Connects to Cloudflare WARP in SOCKS5 with Sing Box."
+			echo "  delSocks Disconnects from Cloudflare WARP on Sing Box."
+			echo "  useWgp   Connects to Cloudflare WARP in SOCKS5 with WireProxy (legacy)."
+			echo "  delWgp   Disconnects from Cloudflare WARP on WireProxy (legacy)."
 			echo "  useTun   Connects to Cloudflarw WARP using a WireGuard TUN interface."
 			echo "  delTun   Disconnects from Cloudflare WARP if using WireGuard TUN."
 			;;
@@ -85,6 +87,8 @@ function delTun {
 	systemctl disable ${1:-nightglow}
 	rm $PREFIX/etc/wireguard/${1:-nightglow}.conf
 }
+function useSb {}
+function delSb {}
 function useSocks {
 	echo "Connecting to WARP via SOCKS5..."
 	cat nightglow.conf > socks5.conf
@@ -113,7 +117,7 @@ function delSocks {
 	rm $PREFIX/lib/systemd/system/nightglow.service
 }
 
-ngVer=0.1
+ngVer=0.2
 echo "Nightglow v${ngVer}"
 echo ""
 case "$1" in
@@ -134,9 +138,15 @@ case "$1" in
 		fi
 		;;
 	"useSocks")
-		useSocks "$2" "$3" "$4"
+		useSb "$2" "$3" "$4"
 		;;
 	"delSocks")
+		delSb
+		;;
+	"useWgp")
+		useSocks "$2" "$3" "$4"
+		;;
+	"delWgp")
 		delSocks
 		;;
 	"useTun")
