@@ -96,22 +96,22 @@ function useSb {
 	WGPort=2408
 	WG_MTU=1280
 	echo "Connecting to WARP via SOCKS5..."
-	cat singbox.json > /etc/sing-box/nightglow.json
-	sed -i "s/__WG_IN_PORT__/${1:-20040}/g" /etc/sing-box/nightglow.json
-	sed -i "s/__WG_END__/${WGPeer}/g" /etc/sing-box/nightglow.json
-	sed -i "s/__WG_END_PORT__/${WGPort}/g" /etc/sing-box/nightglow.json
-	sed -i "s/__WG_MTU__/${WG_MTU}/g" /etc/sing-box/nightglow.json
-	sed -i "s/__WG_PUB__/${RemPub/\//\\\/}/g" /etc/sing-box/nightglow.json
-	sed -i "s/__WG_PRI__/${LocPri/\//\\\/}/g" /etc/sing-box/nightglow.json
-	sed -i "s/__WG_ALLOWED_IPv4__/${AddrV4/\//\\\/}/g" /etc/sing-box/nightglow.json
-	sed -i "s/__WG_ALLOWED_IPv6__/${AddrV6/\//\\\/}/g" /etc/sing-box/nightglow.json
+	cat singbox.json > $PREFIX/etc/singbox/nightglow.json
+	sed -i "s/__WG_IN_PORT__/${1:-20040}/g" $PREFIX/etc/singbox/nightglow.json
+	sed -i "s/__WG_END__/${WGPeer}/g" $PREFIX/etc/singbox/nightglow.json
+	sed -i "s/__WG_END_PORT__/${WGPort}/g" $PREFIX/etc/singbox/nightglow.json
+	sed -i "s/__WG_MTU__/${WG_MTU}/g" $PREFIX/etc/singbox/nightglow.json
+	sed -i "s/__WG_PUB__/${RemPub/\//\\\/}/g" $PREFIX/etc/singbox/nightglow.json
+	sed -i "s/__WG_PRI__/${LocPri/\//\\\/}/g" $PREFIX/etc/singbox/nightglow.json
+	sed -i "s/__WG_ALLOWED_IPv4__/${AddrV4/\//\\\/}/g" $PREFIX/etc/singbox/nightglow.json
+	sed -i "s/__WG_ALLOWED_IPv6__/${AddrV6/\//\\\/}/g" $PREFIX/etc/singbox/nightglow.json
 	systemctl enable sing-box@nightglow --now
 }
 function delSb {
 	echo "Disconnecting from WARP..."
 	systemctl stop sing-box@nightglow
 	systemctl disable sing-box@nightglow
-	rm /etc/sing-box/nightglow.json
+	rm $PREFIX/etc/singbox/nightglow.json
 }
 function useSocks {
 	echo "Connecting to WARP via SOCKS5..."
