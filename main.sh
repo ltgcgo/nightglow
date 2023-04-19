@@ -1,6 +1,6 @@
 #!/bin/bash
 use ./wgcf.sh
-use ./wireproxy.sh
+use ./singbox.sh
 echo "Updating helper script..."
 mkdir -p $PREFIX/opt/nightglow
 cd $PREFIX/opt/nightglow
