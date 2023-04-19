@@ -97,6 +97,7 @@ function useSb {
 	WG_MTU=1280
 	echo "Connecting to WARP via SOCKS5..."
 	cat singbox.json > /etc/sing-box/nightglow.json
+	sed -i "s/__WG_IN_PORT__/${1:-20040}/g" /etc/sing-box/nightglow.json
 	sed -i "s/__WG_END__/${WGPeer}/g" /etc/sing-box/nightglow.json
 	sed -i "s/__WG_END_PORT__/${WGPort}/g" /etc/sing-box/nightglow.json
 	sed -i "s/__WG_MTU__/${WG_MTU}/g" /etc/sing-box/nightglow.json

@@ -28,7 +28,7 @@
 		"type": "socks",
 		"tag": "i-socks",
 		"listen": "127.0.0.1",
-		"listen_port": 20040,
+		"listen_port": __WG_IN_PORT__,
 		"sniff": true,
 		"sniff_override_destination": false,
 		"domain_strategy": "prefer_ipv6"
