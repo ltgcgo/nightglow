@@ -87,8 +87,31 @@ function delTun {
 	systemctl disable ${1:-nightglow}
 	rm $PREFIX/etc/wireguard/${1:-nightglow}.conf
 }
-function useSb {}
-function delSb {}
+function useSb {
+	AddrV4=$(cat nightglow.conf | grep "/32" | cut -d' ' -f3)
+	AddrV6=$(cat nightglow.conf | grep "/128" | cut -d' ' -f3)
+	LocPri=$(cat nightglow.conf | grep "PrivateKey" | cut -d' ' -f3)
+	RemPub=$(cat nightglow.conf | grep "PublicKey" | cut -d' ' -f3)
+	WGPeer="engage.cloudflareclient.com"
+	WGPort=2408
+	WG_MTU=1280
+	echo "Connecting to WARP via SOCKS5..."
+	cat singbox.json > /etc/sing-box/nightglow.json
+	sed -i "s/__WG_END__/${WGPeer}/g" /etc/sing-box/nightglow.json
+	sed -i "s/__WG_END_PORT__/${WGPort}/g" /etc/sing-box/nightglow.json
+	sed -i "s/__WG_MTU__/${WG_MTU}/g" /etc/sing-box/nightglow.json
+	sed -i "s/__WG_PUB__/${RemPub/\//\\\/}/g" /etc/sing-box/nightglow.json
+	sed -i "s/__WG_PRI__/${LocPri/\//\\\/}/g" /etc/sing-box/nightglow.json
+	sed -i "s/__WG_ALLOWED_IPv4__/${AddrV4/\//\\\/}/g" /etc/sing-box/nightglow.json
+	sed -i "s/__WG_ALLOWED_IPv6__/${AddrV6/\//\\\/}/g" /etc/sing-box/nightglow.json
+	systemctl enable sing-box@nightglow --now
+}
+function delSb {
+	echo "Disconnecting from WARP..."
+	systemctl stop sing-box@nightglow
+	systemctl disable sing-box@nightglow
+	rm /etc/sing-box/nightglow.json
+}
 function useSocks {
 	echo "Connecting to WARP via SOCKS5..."
 	cat nightglow.conf > socks5.conf
