@@ -3,7 +3,7 @@
 appName="Sing Box"
 debArch=$(uname -m)
 transArch=$debArch
-targetVer="1.2.4"
+targetVer="1.2.6"
 case $debArch in
 	"x86_64" | "amd64")
 		transArch="amd64"
@@ -25,7 +25,7 @@ if [ -e "./sing-box.tgz" ] ; then
 	cp ./sing-box.tgz $PREFIX/opt/sing-box/
 else
 	echo "Downloading sing-box..."
-	curl -Lso $PREFIX/opt/sing-box/sing-box.tgz https://github.com/SagerNet/sing-box/releases/latest/download/${filename}.tar.gz
+	curl -Lso $PREFIX/opt/sing-box/sing-box.tgz https://github.com/SagerNet/sing-box/releases/download/v${targetVer}/${filename}.tar.gz
 fi
 cd $PREFIX/opt/sing-box/
 echo "Extracting archives..."
