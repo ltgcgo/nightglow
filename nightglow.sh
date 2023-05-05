@@ -113,7 +113,27 @@ function delSb {
 	systemctl disable sing-box@nightglow
 	rm $PREFIX/etc/sing-box/nightglow.json
 }
-function useKm {}
+function useKm {
+	AddrV4=$(cat nightglow.conf | grep "/32" | cut -d' ' -f3)
+	AddrV6=$(cat nightglow.conf | grep "/128" | cut -d' ' -f3)
+	LocPri=$(cat nightglow.conf | grep "PrivateKey" | cut -d' ' -f3)
+	RemPub=$(cat nightglow.conf | grep "PublicKey" | cut -d' ' -f3)
+	WGPeer="engage.cloudflareclient.com"
+	WGPort=2408
+	WG_MTU=1280
+	echo "Connecting to WARP via kernel module and SOCKS5..."
+	cat sbdialer.json > $PREFIX/etc/sing-box/ng-dialer.json
+	echo "[Interface]" > $PREFIX/etc/wireguard/nightglow.conf
+	echo "PrivateKey = ${LocPri}" >> $PREFIX/etc/wireguard/nightglow.conf
+	echo "Address = ${AddrV4}" >> $PREFIX/etc/wireguard/nightglow.conf
+	echo "Address = ${AddrV6}" >> $PREFIX/etc/wireguard/nightglow.conf
+	echo "DNS = 1.1.1.1" >> $PREFIX/etc/wireguard/nightglow.conf
+	echo "MTU = ${WG_MTU}" >> $PREFIX/etc/wireguard/nightglow.conf
+	echo " " >> $PREFIX/etc/wireguard/nightglow.conf
+	echo "[Peer]" >> $PREFIX/etc/wireguard/nightglow.conf
+	echo "PublicKey = ${RemPub}" >> $PREFIX/etc/wireguard/nightglow.conf
+	echo "Endpoint = ${WGPeer}:${WGPort}">> $PREFIX/etc/wireguard/nightglow.conf
+}
 function delKm {
 	echo "Disconnecting from WARP ..."
 	systemctl stop wg-quick@nightglow
