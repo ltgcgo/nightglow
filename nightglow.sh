@@ -113,6 +113,8 @@ function delSb {
 	systemctl disable sing-box@nightglow
 	rm $PREFIX/etc/sing-box/nightglow.json
 }
+function useKm {}
+function delKm {}
 function useSocks {
 	echo "Connecting to WARP via SOCKS5..."
 	cat nightglow.conf > socks5.conf
