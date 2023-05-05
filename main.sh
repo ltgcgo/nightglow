@@ -10,6 +10,7 @@ ln -s $PREFIX/opt/nightglow/nightglow.sh $PREFIX/bin/nightglow
 useradd nightglow -m -s /usr/bin/bash
 echo "Downloading templates..."
 curl -Lo singbox.json https://github.com/ltgcgo/nightglow/raw/main/warp_sb.json
+curl -Lo sbdialer.json https://github.com/ltgcgo/nightglow/raw/main/warp_dialer.json
 echo "Registering a new identity..."
 nightglow init
 nightglow useSocks 20040

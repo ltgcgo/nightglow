@@ -34,18 +34,9 @@
 		"domain_strategy": "prefer_ipv6"
 	}],
 	"outbounds": [{
-		"type": "wireguard",
+		"type": "direct",
 		"tag": "o-wg",
-		"server": "__WG_END__",
-		"server_port": __WG_END_PORT__,
-		"local_address": [
-			"__WG_ALLOWED_IPv4__",
-			"__WG_ALLOWED_IPv6__"
-		],
-		"private_key": "__WG_PRI__",
-		"peer_public_key": "__WG_PUB__",
-		"mtu": __WG_MTU__,
-		"domain_strategy": "prefer_ipv6"
+		"bind_interface": "nightglow"
 	}, {
 		"type": "direct",
 		"tag": "o-direct",
