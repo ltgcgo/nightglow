@@ -123,6 +123,7 @@ function useKm {
 	WG_MTU=1280
 	echo "Connecting to WARP via kernel module and SOCKS5..."
 	cat sbdialer.json > $PREFIX/etc/sing-box/ng-dialer.json
+	sed -i "s/__WG_IN_PORT__/${1:-20040}/g" $PREFIX/etc/sing-box/ng-dialer.json
 	echo "[Interface]" > $PREFIX/etc/wireguard/nightglow.conf
 	echo "PrivateKey = ${LocPri}" >> $PREFIX/etc/wireguard/nightglow.conf
 	echo "Address = ${AddrV4}" >> $PREFIX/etc/wireguard/nightglow.conf
@@ -133,6 +134,8 @@ function useKm {
 	echo "[Peer]" >> $PREFIX/etc/wireguard/nightglow.conf
 	echo "PublicKey = ${RemPub}" >> $PREFIX/etc/wireguard/nightglow.conf
 	echo "Endpoint = ${WGPeer}:${WGPort}">> $PREFIX/etc/wireguard/nightglow.conf
+	systemctl enable sing-box@ng-dialer --now
+	systemctl start wg-quick@nightglow
 }
 function delKm {
 	echo "Disconnecting from WARP ..."
