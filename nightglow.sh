@@ -114,7 +114,15 @@ function delSb {
 	rm $PREFIX/etc/sing-box/nightglow.json
 }
 function useKm {}
-function delKm {}
+function delKm {
+	echo "Disconnecting from WARP ..."
+	systemctl stop wg-quick@nightglow
+	systemctl disable wg-quick@nightglow
+	systemctl stop sing-box@ng-dialer
+	systemctl disable sing-box@ng-dialer
+	rm $PREFIX/etc/wireguard/nightglow.conf
+	rm $PREFIX/etc/sing-box/ng-dialer.json
+}
 function useSocks {
 	echo "Connecting to WARP via SOCKS5..."
 	cat nightglow.conf > socks5.conf
