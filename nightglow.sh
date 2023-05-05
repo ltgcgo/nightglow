@@ -132,6 +132,8 @@ function useKm {
 	echo "Address = ${AddrV6}" >> $PREFIX/etc/wireguard/nightglow.conf
 	echo "DNS = 1.1.1.1" >> $PREFIX/etc/wireguard/nightglow.conf
 	echo "MTU = ${WG_MTU}" >> $PREFIX/etc/wireguard/nightglow.conf
+	echo "PostUp = wg set nightglow peer ${RemPub} allowed-ips 0.0.0.0/0" >> $PREFIX/etc/wireguard/nightglow.conf
+	echo "PostUp = wg set nightglow peer ${RemPub} allowed-ips ::/0" >> $PREFIX/etc/wireguard/nightglow.conf
 	echo " " >> $PREFIX/etc/wireguard/nightglow.conf
 	echo "[Peer]" >> $PREFIX/etc/wireguard/nightglow.conf
 	echo "PublicKey = ${RemPub}" >> $PREFIX/etc/wireguard/nightglow.conf
