@@ -28,6 +28,8 @@ function showHelp {
 			echo "  update   Prepare Cloudflare WARP configurations for connection."
 			echo "  useSocks Connects to Cloudflare WARP in SOCKS5 with Sing Box."
 			echo "  delSocks Disconnects from Cloudflare WARP on Sing Box."
+			echo "  useKm    Connects to Cloudflare WARP in SOCKS5 via kernel module."
+			echo "  delKm    Disconnects from Cloudflare WARP on kernel module."
 			echo "  useWgp   Connects to Cloudflare WARP in SOCKS5 with WireProxy (legacy)."
 			echo "  delWgp   Disconnects from Cloudflare WARP on WireProxy (legacy)."
 			echo "  useTun   Connects to Cloudflarw WARP using a WireGuard TUN interface."
