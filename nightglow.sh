@@ -200,6 +200,12 @@ case "$1" in
 	"delSocks")
 		delSb
 		;;
+	"useKm")
+		useKm "$2" "$3" "$4"
+		;;
+	"delKm")
+		delKm
+		;;
 	"useWgp")
 		useSocks "$2" "$3" "$4"
 		;;
