@@ -1,5 +1,5 @@
 #!/bin/bash
-appVer="2.2.16"
+appVer="2.2.20"
 echo "Detecting device architecture..."
 debArch=$(uname -m)
 transArch=$debArch
