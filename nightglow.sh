@@ -178,7 +178,7 @@ function delSocks {
 	rm $PREFIX/lib/systemd/system/nightglow.service
 }
 
-ngVer=0.3
+ngVer=0.3.1
 echo "Nightglow v${ngVer}"
 echo ""
 case "$1" in
