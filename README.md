@@ -1,6 +1,10 @@
 # nightglow
 🌙 Ditching the crappy official Cloudflare WARP CLI client.
 
+> **Warning**
+> 
+> Due to questionable feature deprecation practice in Sing Box, Nightglow will be held on Sing Box v1.5.5.
+
 ## Credits
 * @[octeep](https://github.com/octeep) for [WireProxy](https://github.com/octeep/wireproxy/)
 * @[ViRb3](https://github.com/ViRb3) for [WGCF](https://github.com/ViRb3/wgcf/)
