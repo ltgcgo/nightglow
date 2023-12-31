@@ -29,5 +29,6 @@ pkgs.mkShell {
 		export ZDOTDIR=$PWD/nix/zsh
 		export XDG_CONFIG_HOME=$PWD/nix
 		export PATH=$PWD:$PATH
+		export SOURCE_DIR=$(./shx sourceDir)
 	'';
 }

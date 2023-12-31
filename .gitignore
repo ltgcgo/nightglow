@@ -2,3 +2,4 @@
 *.map
 install.sh
 .zcompdump
+.zsh_history
