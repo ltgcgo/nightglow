@@ -1,2 +1,4 @@
 *.swp
+*.map
 install.sh
+.zcompdump
